@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:instagram_clone/resources/auth_methods.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/utils/utils.dart';
 import 'package:instagram_clone/widgets/text_field_input.dart';
@@ -35,6 +36,20 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() {
       _image = image;
     });
+  }
+
+  void signUpUser() async {
+    String res = await AuthMethods().signUpUser(
+      email: _emailController.text,
+      password: _passController.text,
+      username: _usernameController.text,
+      bio: _bioController.text,
+      file: _image!,
+    );
+
+    if (res != "success") {
+      showSnackBar(res, context);
+    }
   }
 
   @override
@@ -112,6 +127,7 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(height: 24),
               // login button
               InkWell(
+                onTap: signUpUser,
                 child: Container(
                   width: double.infinity,
                   alignment: Alignment.center,
