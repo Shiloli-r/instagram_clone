@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone/resources/auth_methods.dart';
+import 'package:instagram_clone/responsive/mobile_screen_layout.dart';
+import 'package:instagram_clone/responsive/responsive_layout_screen.dart';
+import 'package:instagram_clone/responsive/web_screen_layout.dart';
 import 'package:instagram_clone/screens/signup_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/utils/utils.dart';
@@ -33,9 +36,16 @@ class _LoginScreenState extends State<LoginScreen> {
       email: _emailController.text,
       password: _passController.text,
     );
-    if (res == "success") {
+    if (res != "success") {
     } else {
-      showSnackBar(res, context);
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: ((context) => const ResponsiveLayout(
+                webScreenLayout: WebScreenLayout(),
+                mobileScreenLayout: MobileScreenLayout(),
+              )),
+        ),
+      );
     }
     setState(() {
       _isLoading = false;
