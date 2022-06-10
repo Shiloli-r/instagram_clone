@@ -32,13 +32,28 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     pageController.jumpToPage(page);
   }
 
+  void onPageChanged(int page) {
+    setState(() {
+      _page = page;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     model.User user = Provider.of<UserProvider>(context).getUser;
 
     return Scaffold(
-      body: Center(
-        child: Text(user.username),
+      body: PageView(
+        controller: pageController,
+        onPageChanged: onPageChanged,
+        physics: const NeverScrollableScrollPhysics(),
+        children: const [
+          Center(child: Text("Feed")),
+          Center(child: Text("Search")),
+          Center(child: Text("Add Post")),
+          Center(child: Text("Favourite")),
+          Center(child: Text("Profile")),
+        ],
       ),
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: mobileBackgroundColor,
