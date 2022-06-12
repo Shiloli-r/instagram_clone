@@ -51,7 +51,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     "https://images.unsplash.com/photo-1656231843229-8ea2b4b46b4b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1524&q=80"),
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.3,
+                width: MediaQuery.of(context).size.width * 0.4,
                 child: TextField(
                   decoration: const InputDecoration(
                     hintText: "Write a caption...",
@@ -67,11 +67,17 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   aspectRatio: 487 / 451,
                   child: Container(
                     decoration: BoxDecoration(
-                      
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            "https://images.unsplash.com/photo-1656231843229-8ea2b4b46b4b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1524&q=80"),
+                        fit: BoxFit.fill,
+                        alignment: FractionalOffset.topCenter,
+                      ),
                     ),
                   ),
                 ),
               ),
+              const Divider(),
             ],
           )
         ],
