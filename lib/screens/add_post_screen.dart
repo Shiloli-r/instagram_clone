@@ -40,7 +40,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
           isLoading = false;
         });
         showSnackBar('Posted!', context);
-        //  clearImage();
+        clearImage();
       } else {
         showSnackBar(res, context);
       }
@@ -50,6 +50,12 @@ class _AddPostScreenState extends State<AddPostScreen> {
       });
       showSnackBar(err.toString(), context);
     }
+  }
+
+  void clearImage() {
+    setState(() {
+      _file = null;
+    });
   }
 
   _selectImage(BuildContext context) async {
@@ -113,7 +119,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
             appBar: AppBar(
               backgroundColor: mobileBackgroundColor,
               leading: IconButton(
-                onPressed: () {},
+                onPressed: clearImage,
                 icon: const Icon(Icons.arrow_back),
               ),
               title: const Text('Post to'),
