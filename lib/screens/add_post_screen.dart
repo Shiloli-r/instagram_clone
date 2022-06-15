@@ -40,7 +40,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
           isLoading = false;
         });
         showSnackBar('Posted!', context);
-      //  clearImage();
+        //  clearImage();
       } else {
         showSnackBar(res, context);
       }
@@ -138,6 +138,12 @@ class _AddPostScreenState extends State<AddPostScreen> {
             ),
             body: Column(
               children: [
+                isLoading
+                    ? const LinearProgressIndicator()
+                    : const Padding(
+                        padding: EdgeInsets.only(top: 0),
+                      ),
+                const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
