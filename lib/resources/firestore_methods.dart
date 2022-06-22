@@ -35,7 +35,7 @@ class FirestoreMethods {
     return res;
   }
 
-    Future<String> likePost(String postId, String uid, List likes) async {
+  Future<String> likePost(String postId, String uid, List likes) async {
     String res = "Some error occurred";
     try {
       if (likes.contains(uid)) {
@@ -55,5 +55,4 @@ class FirestoreMethods {
     }
     return res;
   }
-
 }

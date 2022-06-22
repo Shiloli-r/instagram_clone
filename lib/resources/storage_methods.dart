@@ -14,7 +14,8 @@ class StorageMethods {
     Reference ref =
         _storage.ref().child(childName).child(_auth.currentUser!.uid);
 
-    if (isPost) { // if it's a post, generate a unique Id for it
+    if (isPost) {
+      // if it's a post, generate a unique Id for it
       String id = const Uuid().v1();
       ref = ref.child(id);
     }

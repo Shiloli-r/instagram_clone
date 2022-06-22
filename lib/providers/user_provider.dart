@@ -8,7 +8,8 @@ class UserProvider with ChangeNotifier {
 
   User get getUser => _user!;
 
-  Future<void> refreshUser() async { // will be called in Responsive layout since it has both web and mobile
+  Future<void> refreshUser() async {
+    // will be called in Responsive layout since it has both web and mobile
     User user = await _authMethods.getUserDetails();
     _user = user;
     notifyListeners();
