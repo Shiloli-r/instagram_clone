@@ -42,7 +42,9 @@ class _CommentsScreenState extends State<CommentsScreen> {
           }
           return ListView.builder(
               itemCount: (snapshot.data! as dynamic).docs.length,
-              itemBuilder: (context, builder) => CommentCard());
+              itemBuilder: (context, index) => CommentCard(
+                snap: (snapshot.data! as dynamic).docs[index].data(), 
+              ));
         },
         stream: FirebaseFirestore.instance
             .collection("posts")
@@ -83,6 +85,9 @@ class _CommentsScreenState extends State<CommentsScreen> {
                     user.username,
                     user.photoUrl,
                   );
+                  setState(() {
+                    _commentController.text = "";
+                  });
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(
