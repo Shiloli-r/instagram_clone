@@ -43,13 +43,17 @@ class _CommentsScreenState extends State<CommentsScreen> {
           return ListView.builder(
               itemCount: (snapshot.data! as dynamic).docs.length,
               itemBuilder: (context, index) => CommentCard(
-                snap: (snapshot.data! as dynamic).docs[index].data(), 
-              ));
+                    snap: (snapshot.data! as dynamic).docs[index].data(),
+                  ));
         },
         stream: FirebaseFirestore.instance
             .collection("posts")
             .doc(widget.snap["postId"])
             .collection("comments")
+            .orderBy(
+              "datePublished",
+              descending: true,
+            )
             .snapshots(),
       ),
       bottomNavigationBar: SafeArea(
